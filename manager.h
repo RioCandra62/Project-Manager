@@ -43,6 +43,9 @@ void deleteLastManager(ListManager &L, addressM P);
 void deleteAfterManager(ListManager &L, addressM prec, addressM P);
 void deleteManager(ListManager &L, addressM P);
 
+//Function Update
+void updateManager(ListManager &L, string nama, string gender, int umur, int entry, addressM P);
+
 //Function lain lain
 addressM searchManager(ListManager L, string name);
 
@@ -50,7 +53,8 @@ addressM searchManager(ListManager L, string name);
 void showAll(ListManager L);
 void showOnly(ListManager L, addressM P);
 void showManager(ListManager L);
+void showOnlyManager(ListManager L, addressM P);
 void mainMenu();
 void headerMenu();
-
+void subMenu();
 #endif // MANAGER_H_INCLUDED

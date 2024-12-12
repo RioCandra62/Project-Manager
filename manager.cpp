@@ -5,6 +5,8 @@
 
 using namespace std;
 
+
+//Function create
 void createListManager(ListManager &L){
     firstM(L) = NULL;
 }
@@ -17,6 +19,7 @@ addressM newListManager(infotypeManager x){
     return P;
 }
 
+//function insert
 void insertFirstManager(ListManager &L, addressM P){
     if(firstM(L) != NULL){
         nextM(P) = firstM(L);
@@ -25,7 +28,6 @@ void insertFirstManager(ListManager &L, addressM P){
         firstM(L) = P;
     }
 }
-
 void insertLastManager(ListManager &L, addressM P){
     if(firstM(L) != NULL){
         addressM q = firstM(L);
@@ -37,8 +39,6 @@ void insertLastManager(ListManager &L, addressM P){
         firstM(L) = P;
     }
 }
-
-
 void deleteFirstManager(ListManager &L, addressM P){
     if (firstM(L) != NULL){
         P = firstM(L);
@@ -49,7 +49,7 @@ void deleteFirstManager(ListManager &L, addressM P){
     }
 }
 
-
+//function delete
 void deleteLastManager(ListManager &L, addressM P){
     if (firstM(L) != NULL){
         addressM q = firstM(L);
@@ -61,12 +61,10 @@ void deleteLastManager(ListManager &L, addressM P){
         firstM(L) = NULL;
     }
 }
-
 void deleteAfterManager(ListManager &L, addressM prec, addressM P){
     nextM(prec) = nextM(P);
     nextM(P) = NULL;
 }
-
 void deleteManager(ListManager &L, addressM P){
     addressM q = firstM(L);
     while (nextM(q) != NULL){
@@ -84,8 +82,15 @@ void deleteManager(ListManager &L, addressM P){
         deleteAfterManager(L, precM, P);
     }
 }
+//function Update
 
-
+void updateManager(ListManager &L, string nama, string gender, int umur, int entry, addressM P){
+    infoM(P).name = nama;
+    infoM(P).gender = gender;
+    infoM(P).age = umur;
+    infoM(P).entry_year = entry;
+}
+//function lain lain
 addressM searchManager(ListManager L, string name){
     addressM P = firstM(L);
     while(P != NULL){
@@ -97,7 +102,6 @@ addressM searchManager(ListManager L, string name){
     }
     return NULL;
 }
-
 void showOnly(ListManager L, addressM P){
     if(firstM(L) != NULL){
         cout << "Manager Name : " << infoM(P).name << endl;
@@ -112,10 +116,22 @@ void showOnly(ListManager L, addressM P){
     }
 }
 
+void showOnlyManager(ListManager L, addressM P){
+    if(firstM(L) != NULL){
+        cout << "---------------------------------" << endl;
+        cout << "Manager Name : " << infoM(P).name << endl;
+        cout << "Manager Gender : " << infoM(P).gender << endl;
+        cout << "Manager Age : " << infoM(P).age << endl;
+        cout << "Manager Entry Year : " << infoM(P).entry_year << endl;
+        cout << "---------------------------------" << endl;
+    }else {
+        cout << "List is empty" << endl;
+    }
+}
 
 
+//function show
 void showManager(ListManager L){
-
     if (firstM(L) != NULL){
         addressM P = firstM(L);
         while(P != NULL){
@@ -146,7 +162,7 @@ void showAll(ListManager L){
             cout << "Manager Gender : " << infoM(P).gender << endl;
             cout << "Manager Age : " << infoM(P).age << endl;
             cout << "Manager Entry Year : " << infoM(P).entry_year << endl;
-            cout << "---------------------------------" << endl;\
+            cout << "---------------------------------" << endl;
 
             showProject(project(P));
             P =  nextM(P);
@@ -175,6 +191,18 @@ void mainMenu(){
     cout << "---------------------------------" << endl;
 }
 
+void subMenu(){
+    cout << "---------------------------------" << endl;
+    cout << "            Update Menu          " << endl;
+    cout << "---------------------------------" << endl;
+    cout << "Option :                         " << endl;
+    cout << "1. Update Manager Name           " << endl;
+    cout << "2. Update Manager Gender         " << endl;
+    cout << "3. Update Manager Age            " << endl;
+    cout << "4. Update Manager Entry Year     " << endl;
+    cout << "5. Update All Manager Data       " << endl;
+    cout << "0. Exit                          " << endl;
+}
 
 
 

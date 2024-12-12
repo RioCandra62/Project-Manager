@@ -7,13 +7,13 @@ using namespace std;
 int main()
 {
     ListManager L;
-    int select, projNum, lastId;
-    string projName;
+    int select, projNum, lastId, age, entry, oldAge;
+    string projName, insertMethode, name, gender, oldName, oldEntry;
     infotypeManager input;
     infotypeProject inputProyek;
     addressM x, findM;
     addressP y, findProject;
-    string insertMethode, name;
+
 
     createListManager(L);
     //Set Data
@@ -63,6 +63,7 @@ int main()
     while (select != 0){
         switch(select){
         case 1:
+            cout << endl;
             headerMenu();
             showManager(L);
             projectMenu();
@@ -147,10 +148,62 @@ int main()
             }
             break;
         case 3:
-            cout << "Enter Manager Name : ";
+            cout << "Input Manager Name to Update : ";
             cin >> name;
             findM = searchManager(L, name);
-            cout << getLastId(project(findM)) << endl;
+            showOnlyManager(L, findM);
+            subMenu();
+            cout << "Select Your Option : ";
+            cin >> select;
+            oldName = infoM(findM).name;
+            while(select != 0){
+                switch (select){
+                case 1:
+                    cout << "Input New Manager Name : ";
+                    cin >> name;
+                    updateManager(L, name, infoM(findM).gender, infoM(findM).age, infoM(findM).entry_year, findM);
+                    cout << "Manager name " << oldName << " changed to " << name << endl;
+                    break;
+                case 2:
+                    cout << "Input New Manager Gender : ";
+                    cin >> gender;
+                    updateManager(L, infoM(findM).name, gender, infoM(findM).age, infoM(findM).entry_year, findM);
+                    cout << "Manager Gender Updated"<< endl;
+                    break;
+                case 3:
+                    oldAge = infoM(findM).age;
+                    cout << "Input New Manager Age : ";
+                    cin >> age;
+                    updateManager(L, infoM(findM).name, infoM(findM).gender, age, infoM(findM).entry_year, findM);
+                    cout << "Manager age Updated from " << oldAge << " to " << age << endl;
+                    break;
+                case 4:
+                    oldEntry = infoM(findM).entry_year;
+                    cout << "Input New Manager Entry Year : ";
+                    cin >> entry;
+                    updateManager(L, infoM(findM).name, infoM(findM).gender, age, entry, findM);
+                    cout << "Manager Entry Year Updated from " << oldEntry << " to " << entry << endl;
+                    break;
+                case 5:
+                    cout << "Input New Name : ";
+                    cin >> name;
+                    cout << "Input New Gender : ";
+                    cin >> gender;
+                    cout << "Enter New age : ";
+                    cin >> age;
+                    cout << "Enter New Entry Year : ";
+                    cin >> entry;
+                    updateManager(L, name, gender, age, entry, findM);
+                    cout << "All Data Manager " << oldName << " has been Updated to " << name << " !" << endl;
+                    break;
+                default:
+                    cout << "Your input is invalid !" << endl;
+                }
+                cout << endl;
+                subMenu();
+                cout << "Select Your Option : ";
+                cin >> select;
+            }
             break;
         case 4:
             cout << "Input Manager Name To Delete : ";
@@ -162,6 +215,7 @@ int main()
         default :
             cout << "Your input is Invalid!"<< endl;
         }
+        cout << endl;
         mainMenu();
         cout << "Enter your input : ";
         cin >> select;

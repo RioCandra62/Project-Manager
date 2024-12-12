@@ -37,20 +37,18 @@ addressP newListProject(infotypeProject x);
 void insertFirstProject(ListProject &Lp, addressP P);
 void insertLastProject(ListProject &Lp, addressP P);
 
-
 //function delete
 void deleteFirstProject(ListProject &Lp, addressP P);
 void deletelastProject(ListProject &Lp, addressP P);
 void deleteAfterProject(ListProject &Lp, addressP prec, addressP P);
 void deleteProject(ListProject &Lp, addressP P);
 
-int numberOfProject(ListProject Lp);
-
 //Function lain lain
 addressP searchProject(ListProject Lp, string name);
 int getLastId(ListProject Lp);
+int numberOfProject(ListProject Lp);
 
-//Function & procedure for GUI
+//function tampilan
 void projectHeader();
 void showProject(ListProject Lp);
 void showProjectOnly(ListProject Lp, string projName);
