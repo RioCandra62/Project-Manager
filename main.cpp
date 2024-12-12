@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     ListManager L;
-    int select;
+    int select, projNum, lastId;
     string projName;
     infotypeManager input;
     infotypeProject inputProyek;
@@ -34,13 +34,15 @@ int main()
     //Insert Project Data
 
     findM = searchManager(L, "John");
-    inputProyek.nama_proyek = "Apartement";
+    inputProyek.id_proyek = 1;
+    inputProyek.nama_proyek = "Apartment";
     inputProyek.durasi_proyek = 1825;
     inputProyek.nilai_proyek = 2500;
     y = newListProject(inputProyek);
     insertLastProject(project(findM), y);
 
     findM = searchManager(L, "John");
+    inputProyek.id_proyek = 2;
     inputProyek.nama_proyek = "Interior_renovation";
     inputProyek.durasi_proyek = 63;
     inputProyek.nilai_proyek = 150;
@@ -48,6 +50,7 @@ int main()
     insertLastProject(project(findM), y);
 
     findM = searchManager(L, "Emily");
+    inputProyek.id_proyek = 1;
     inputProyek.nama_proyek = "Civilian_House";
     inputProyek.durasi_proyek = 365;
     inputProyek.nilai_proyek = 1024;
@@ -87,6 +90,7 @@ int main()
                         cin >> inputProyek.durasi_proyek;
                         cout << "Enter Project Value (million) : ";
                         cin >> inputProyek.nilai_proyek;
+                        inputProyek.id_proyek = getLastId(project(findM)) + 1;
                         y = newListProject(inputProyek);
                         cout << "Insert first or last ? ";
                         cin >> insertMethode;
@@ -102,15 +106,19 @@ int main()
                         cout << "Under Construction" << endl;
                         break;
                     case 5:
-                    default:
                         cout << "Input Manager Name : ";
                         cin >> name;
                         findM = searchManager(L, name);
                         cout << "---------------------------------" << endl;
                         showProject(project(findM));
-                        cout << "Input Project Name to delete : ";
+                        cout << "Input Project Number to delete : ";
                         cin >> name;
                         findProject = searchProject(project(findM), name);
+                        deleteProject(project(findM), findProject);
+                        cout << name << " Has successfully deleted ! " << endl;
+                        break;
+                    default:
+                        cout << "Your input is invalid!";
                     }
                     projectMenu();
                     cout << "Enter Your Option : ";
@@ -139,7 +147,10 @@ int main()
             }
             break;
         case 3:
-                showProject(project(findM));
+            cout << "Enter Manager Name : ";
+            cin >> name;
+            findM = searchManager(L, name);
+            cout << getLastId(project(findM)) << endl;
             break;
         case 4:
             cout << "Input Manager Name To Delete : ";

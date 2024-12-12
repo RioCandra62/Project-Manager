@@ -80,13 +80,13 @@ void deleteAfterProject(ListProject &Lp, addressP prec, addressP P){
     nextC(P) = NULL;
 }
 
-void deleteProject(ListProject Lp, addressP P){
+void deleteProject(ListProject &Lp, addressP P){
     if (P == firstC(Lp)){
         deleteFirstProject(Lp, P);
     }else if(P == lastC(Lp)){
         deletelastProject(Lp, P);
     }else {
-        deleteAfterProject(Lp, prev(P), P);
+        deleteAfterProject(Lp, prevC(P), P);
     }
 }
 
@@ -103,11 +103,10 @@ addressP searchProject(ListProject Lp, string projName){
 }
 
  void showProject(ListProject Lp){
-    int projNum = 1;
     addressP q = firstC(Lp);
     if (firstC(Lp) != NULL){
         while (q != NULL){
-            cout << "Project Number : " << projNum << endl;
+            cout << "Project Number : " <<  infoC(q).id_proyek << endl;
             int year, month, day;
             int duration = infoC(q).durasi_proyek;
             int value = infoC(q).nilai_proyek;
@@ -124,7 +123,7 @@ addressP searchProject(ListProject Lp, string projName){
                     cout << "Project Duration : " << year << " Years" << endl;
                 }
             } else if (year != NULL){
-                cout << "Project Duration : " << year << " Year " << month << " Months and " << day << " Days" << endl;;
+                cout << "Project Duration : " << year << " Years " << month << " Months and " << day << " Days" << endl;;
             }else if(month != NULL && year == NULL && day == NULL){
                 if (year == 1){
                     cout << "Project Duration : " << month << " Month" << endl;
@@ -150,7 +149,6 @@ addressP searchProject(ListProject Lp, string projName){
             cout << "---------------------------------" << endl;
 
             q = nextC(q);
-            projNum++;
         }
     }else {
         cout << "No Project Data" << endl;
@@ -167,6 +165,12 @@ addressP searchProject(ListProject Lp, string projName){
     }
     return total;
  }
+
+ int getLastId(ListProject Lp){
+     addressP q = lastC(Lp);
+     return infoC(q).id_proyek;
+ }
+
 
  void projectHeader(){
     cout << "---------------------------------" << endl;

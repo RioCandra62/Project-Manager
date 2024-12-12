@@ -11,6 +11,7 @@ using namespace std;
 #define infoC(P) P->infoC
 
 struct proyek{
+    int id_proyek;
     string nama_proyek;
     int durasi_proyek;
     int nilai_proyek;
@@ -47,6 +48,7 @@ int numberOfProject(ListProject Lp);
 
 //Function lain lain
 addressP searchProject(ListProject Lp, string name);
+int getLastId(ListProject Lp);
 
 //Function & procedure for GUI
 void projectHeader();
