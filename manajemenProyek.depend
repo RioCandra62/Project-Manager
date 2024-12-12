@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1734001637 source:d:\codeblock files\manajemenproyek\main.cpp
+	<iostream>
+	"manager.h"
+	"proyek.h"
+
+1733996298 d:\codeblock files\manajemenproyek\manager.h
+	"proyek.h"
+
+1734001927 source:d:\codeblock files\manajemenproyek\manager.cpp
+	<iostream>
+	"manager.h"
+	"proyek.h"
+
+1734001974 source:d:\codeblock files\manajemenproyek\proyek.cpp
+	<iostream>
+	"proyek.h"
+	"manager.h"
+
+1734001637 d:\codeblock files\manajemenproyek\proyek.h
+
