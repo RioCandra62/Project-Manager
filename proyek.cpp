@@ -90,6 +90,14 @@ void deleteProject(ListProject &Lp, addressP P){
     }
 }
 
+void updateProject(ListProject &Lp, addressP P, infotypeProject data){
+    infoC(P).durasi_proyek = data.durasi_proyek;
+    infoC(P).nama_proyek = data.nama_proyek;
+    infoC(P).nilai_proyek = data.nilai_proyek;
+    infoC(P).durasi_proyek = data.durasi_proyek;
+}
+
+
 addressP searchProject(ListProject Lp, string projName){
     addressP P = firstC(Lp);
     while(P != NULL){
@@ -101,6 +109,19 @@ addressP searchProject(ListProject Lp, string projName){
     }
     return NULL;
 }
+
+addressP searchProjectNumber(ListProject Lp, int projNum){
+    addressP P = firstC(Lp);
+    while(P != NULL){
+        if(infoC(P).id_proyek == projNum){
+            return P;
+        }else {
+            P = nextC(P);
+        }
+    }
+    return NULL;
+}
+
 
  void showProject(ListProject Lp){
     addressP q = firstC(Lp);
@@ -191,6 +212,18 @@ void projectMenu(){
     cout << "5.Delete Project Data            " << endl;
     cout << "0.Exit                           " << endl;
     cout << "---------------------------------" << endl;
+}
+void subMenuUpdateProyek(){
+    cout << "---------------------------------" << endl;
+    cout << "            Update Menu          " << endl;
+    cout << "---------------------------------" << endl;
+    cout << "Option :                         " << endl;
+    cout << "1. Update Project ID             " << endl;
+    cout << "2. Update Project Name           " << endl;
+    cout << "3. Update Project Duration       " << endl;
+    cout << "4. Update Project Value          " << endl;
+    cout << "5. Update All Project Data       " << endl;
+    cout << "0. Exit                          " << endl;
 }
 
 

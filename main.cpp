@@ -10,7 +10,7 @@ int main()
     int select, projNum, lastId, age, entry, oldAge;
     string projName, insertMethode, name, gender, oldName, oldEntry;
     infotypeManager input;
-    infotypeProject inputProyek;
+    infotypeProject inputProyek, data;
     addressM x, findM;
     addressP y, findProject;
 
@@ -104,7 +104,56 @@ int main()
                         }
                     break;
                     case 4:
-                        cout << "Under Construction" << endl;
+                        cout << "Input Manager Name : ";
+                        cin >> name;
+                        findM = searchManager(L, name);
+                        showOnly(L, findM);
+                        cout << "Input Project Number to Update : ";
+                        cin >> projNum;
+                        findProject = searchProjectNumber(project(findM), projNum);
+                        data = infoC(findProject);
+                        subMenuUpdateProyek();
+                        cout << "Select Your Option : ";
+                        cin >> select;
+                        while (select != 0){
+                            switch(select){
+                            case 1:
+                                cout << "Input New Project ID : ";
+                                cin >> data.id_proyek;
+                                updateProject(project(findM), findProject, data);
+                                cout << "Project ID Updated!" << endl;
+                                break;
+                            case 2:
+                                cout << "Input New Project Name : ";
+                                cin >> data.nama_proyek;
+                                updateProject(project(findM), findProject, data);
+                                cout << "Project Name Updated!" << endl;
+                            case 3:
+                                cout << "Input New Duration : ";
+                                cin >> data.durasi_proyek;
+                                updateProject(project(findM), findProject, data);
+                                cout << "Project Duration Updated!" << endl;
+                            case 4:
+                                cout << "Input New Project Value : ";
+                                cin >> data.nilai_proyek;
+                                updateProject(project(findM), findProject, data);
+                                cout << "Project Value Updated" << endl;
+                            case 5:
+                                cout << "Input New Project ID : ";
+                                cin >> data.id_proyek;
+                                cout << "Input New Project Name : ";
+                                cin >> data.nama_proyek;
+                                cout << "Input New Duration : ";
+                                cin >> data.durasi_proyek;
+                                cout << "Input New Project Value : ";
+                                cin >> data.nilai_proyek;
+                                updateProject(project(findM), findProject, data);
+                                cout << "Project Data Updated!" << endl;
+                            }
+                            subMenuUpdateProyek();
+                            cout << "Select Your Option : ";
+                            cin >> select;
+                        }
                         break;
                     case 5:
                         cout << "Input Manager Name : ";
@@ -113,10 +162,10 @@ int main()
                         cout << "---------------------------------" << endl;
                         showProject(project(findM));
                         cout << "Input Project Number to delete : ";
-                        cin >> name;
-                        findProject = searchProject(project(findM), name);
+                        cin >> projNum;
+                        findProject = searchProjectNumber(project(findM), projNum);
                         deleteProject(project(findM), findProject);
-                        cout << name << " Has successfully deleted ! " << endl;
+                        cout << infoC(findProject).nama_proyek << " Has successfully deleted ! " << endl;
                         break;
                     default:
                         cout << "Your input is invalid!";

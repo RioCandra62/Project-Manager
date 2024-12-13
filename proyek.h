@@ -43,8 +43,12 @@ void deletelastProject(ListProject &Lp, addressP P);
 void deleteAfterProject(ListProject &Lp, addressP prec, addressP P);
 void deleteProject(ListProject &Lp, addressP P);
 
+//function Update
+void updateProject(ListProject &Lp, addressP P, infotypeProject data);
+
 //Function lain lain
 addressP searchProject(ListProject Lp, string name);
+addressP searchProjectNumber(ListProject Lp, int projNum);
 int getLastId(ListProject Lp);
 int numberOfProject(ListProject Lp);
 
@@ -54,5 +58,6 @@ void showProject(ListProject Lp);
 void showProjectOnly(ListProject Lp, string projName);
 void projectMenu();
 void projectMenuHeader();
+void subMenuUpdateProyek();
 
 #endif // PROYEK_H_INCLUDED
