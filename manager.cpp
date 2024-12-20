@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <iomanip>
+#include <string>
 #include "manager.h"
 #include "proyek.h"
 
@@ -103,16 +104,22 @@ addressM searchManager(ListManager L, string name){
     return NULL;
 }
 void showOnly(ListManager L, addressM P){
-    if(firstM(L) != NULL){
-        cout << "Manager Name : " << infoM(P).name << endl;
-        cout << "Manager Gender : " << infoM(P).gender << endl;
-        cout << "Manager Age : " << infoM(P).age << endl;
-        cout << "Manager Entry Year : " << infoM(P).entry_year << endl;
-        cout << "---------------------------------" << endl;
-        projectHeader();
-        showProject(project(P));
+    int no = 1;
+    if (firstM(L) != NULL){
+            cout << "|" << setw(5) << left << no++;
+            cout << setw(7) << "|" << setw(12) << left << infoM(P).name;
+            cout << setw(4) << "|" << setw(7) << infoM(P).gender;
+            cout << setw(6) << "|" << setw(6) << infoM(P).age;
+            cout << setw(7) << "|" << setw(10) << infoM(P).entry_year;
+            int numProject = numberOfProject(project(P));
+            if (numProject > 0 ){
+                cout << setw(7)<< "|" << setw(1) << numProject << " Project" << setw(7) << right << "|" << endl;
+            }else {
+                cout << setw(2) << "|" << "No Project assigned" << setw(2)<< right << "|"<< endl;
+            }
+            cout << "+-----+------------------+----------+-----------+----------------+---------------------+" << endl;
     }else {
-        cout << "List is empty" << endl;
+        cout << "List is Empty" << endl;
     }
 }
 
@@ -132,20 +139,22 @@ void showOnlyManager(ListManager L, addressM P){
 
 //function show
 void showManager(ListManager L){
+    int no = 1;
     if (firstM(L) != NULL){
         addressM P = firstM(L);
         while(P != NULL){
-            cout << "Manager Name : " << infoM(P).name << endl;
-            cout << "Manager Gender : " << infoM(P).gender << endl;
-            cout << "Manager Age : " << infoM(P).age << endl;
-            cout << "Manager Entry Year : " << infoM(P).entry_year << endl;
+            cout << "|" << setw(5) << left << no++;
+            cout << setw(7) << "|" << setw(12) << left << infoM(P).name;
+            cout << setw(4) << "|" << setw(7) << infoM(P).gender;
+            cout << setw(6) << "|" << setw(6) << infoM(P).age;
+            cout << setw(7) << "|" << setw(10) << infoM(P).entry_year;
             int numProject = numberOfProject(project(P));
             if (numProject > 0 ){
-                cout << "Number of Project : " << numProject << " Project" << endl;
+                cout << setw(7)<< "|" << setw(1) << numProject << " Project" << setw(7) << right << "|" << endl;
             }else {
-                cout << "Number of Project : No Project assigned" << endl;
+                cout << setw(2) << "|" << "No Project assigned" << setw(2)<< right << "|"<< endl;
             }
-            cout << "---------------------------------" << endl;
+            cout << "+-----+------------------+----------+-----------+----------------+---------------------+" << endl;
             P =  nextM(P);
         }
     }else {
@@ -157,13 +166,9 @@ void showAll(ListManager L){
     if (firstM(L) != NULL){
         addressM P = firstM(L);
         while(P != NULL){
-            headerMenu();
-            cout << "Manager Name : " << infoM(P).name << endl;
-            cout << "Manager Gender : " << infoM(P).gender << endl;
-            cout << "Manager Age : " << infoM(P).age << endl;
-            cout << "Manager Entry Year : " << infoM(P).entry_year << endl;
-            cout << "---------------------------------" << endl;
-
+            tableHeader();
+            showOnly(L, P);
+            tableHeaderProject();
             showProject(project(P));
             P =  nextM(P);
         }
@@ -187,6 +192,7 @@ void mainMenu(){
     cout << "2. Add Project Manager           " << endl;
     cout << "3. Update Project Manager        " << endl;
     cout << "4. Delete Project Manager        " << endl;
+    cout << "5. Project Menu                  " << endl;
     cout << "0. Exit                          " << endl;
     cout << "---------------------------------" << endl;
 }
@@ -202,6 +208,13 @@ void subMenu(){
     cout << "4. Update Manager Entry Year     " << endl;
     cout << "5. Update All Manager Data       " << endl;
     cout << "0. Exit                          " << endl;
+}
+
+
+void tableHeader(){
+    cout << "+=====+==================+==========+===========+================+=====================+" << endl;
+    cout << "| No  |   Manager Name   |    Age   |   gender  |   Entry Year   |  Number of Project  |" << endl;
+    cout << "+-----+------------------+----------+-----------+----------------+---------------------+" << endl;
 }
 
 

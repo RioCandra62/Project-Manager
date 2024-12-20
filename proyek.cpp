@@ -2,6 +2,9 @@
 using namespace std;
 #include "proyek.h"
 #include "manager.h"
+#include <iostream>
+#include <iomanip>
+#include <string>
 
 void createListProject(ListProject &Lp){
     firstC(Lp) = NULL;
@@ -60,15 +63,18 @@ void deleteFirstProject(ListProject &Lp, addressP P){
     }
 }
 
-void deletelastProject(ListProject &Lp, addressP P){
-    if (P != lastC(Lp)){
-         P = lastC(Lp);
-         lastC(Lp) = prevC(lastC(Lp));
-         prevC(P) = NULL;
-         nextC(lastC(Lp)) = NULL;
-    }else{
-        firstC(Lp) = NULL;
-        lastC(Lp) = NULL;
+void deletelastProject(ListProject &Lp){
+    addressP P = lastC(Lp);
+    if(firstC(Lp) != NULL){
+        if(firstC(Lp) != lastC(Lp)){
+            lastC(Lp) = prevC(P);
+            nextC(lastC(Lp)) = NULL;
+        }else {
+            firstC(Lp) = NULL;
+            lastC(Lp) = NULL;
+        }
+    }else {
+        cout << "List empty" << endl;
     }
 }
 
@@ -84,7 +90,7 @@ void deleteProject(ListProject &Lp, addressP P){
     if (P == firstC(Lp)){
         deleteFirstProject(Lp, P);
     }else if(P == lastC(Lp)){
-        deletelastProject(Lp, P);
+        deletelastProject(Lp);
     }else {
         deleteAfterProject(Lp, prevC(P), P);
     }
@@ -127,11 +133,11 @@ addressP searchProjectNumber(ListProject Lp, int projNum){
     addressP q = firstC(Lp);
     if (firstC(Lp) != NULL){
         while (q != NULL){
-            cout << "Project Number : " <<  infoC(q).id_proyek << endl;
+            cout << "|" << setw(5) <<  infoC(q).id_proyek;
             int year, month, day;
             int duration = infoC(q).durasi_proyek;
             int value = infoC(q).nilai_proyek;
-            cout << "Project Name : " << infoC(q).nama_proyek << endl;
+            cout << "|" << setw(18) << left << infoC(q).nama_proyek;
             year = duration / 365;
             duration = duration % 365;
             month = duration / 30;
@@ -139,36 +145,35 @@ addressP searchProjectNumber(ListProject Lp, int projNum){
             day = duration;
             if (year != NULL && month == NULL && day == NULL){
                 if (year == 1){
-                    cout << "Project Duration : " << year << " Year" << endl;
+                    cout << "|" << year << setw(29) << left << " Year";
                 }else {
-                    cout << "Project Duration : " << year << " Years" << endl;
+                    cout << "|" << year <<  setw(29) << left << " Years";
                 }
             } else if (year != NULL){
-                cout << "Project Duration : " << year << " Years " << month << " Months and " << day << " Days" << endl;;
+                cout <<"|"<< year << " Years " << month << " Months and " << day << setw(8) << " Days";
             }else if(month != NULL && year == NULL && day == NULL){
                 if (year == 1){
-                    cout << "Project Duration : " << month << " Month" << endl;
+                    cout << "|" << month << " Month";
                 }else {
-                    cout << "Project Duration : " << month << " Months" << endl;
+                    cout << "|" << month << setw(5) << left << " Months";
                 }
             }else if(year == NULL && month != NULL){
-                cout << "Project Duration : " << month << " Months and " << day << " Days" << endl;
+                cout << "|" << month << " Months and " << day << setw(16) << left << " Days";
             }else {
                 if (day != 1){
-                    cout << day << " days" << endl;
+                    cout << "|" << day << setw(13) << left << " days ";
                 }else {
-                    cout << day << " day" << endl;
+                    cout << "|" << day << setw(13) << left << " day ";
                 }
             }
             if (value >= 1000){
                 float finalValue;
                 finalValue = (float)value / 1000;
-                cout << "Project Value : IDR " << finalValue << " Billion" << endl;
+                cout << "|" << finalValue << setw(15) << left <<" Billion" << "|" << endl;
             }else {
-                cout << "Project Value : IDR " << value << " Million" << endl;
+                cout << "|" << value << setw(15) << " Million" << "|" << endl;
             }
-            cout << "---------------------------------" << endl;
-
+            cout << "+-----+------------------+------------------------------+------------------+" << endl;
             q = nextC(q);
         }
     }else {
@@ -224,6 +229,12 @@ void subMenuUpdateProyek(){
     cout << "4. Update Project Value          " << endl;
     cout << "5. Update All Project Data       " << endl;
     cout << "0. Exit                          " << endl;
+}
+
+void tableHeaderProject(){
+    cout << "+=====+==================+==============================+==================+" << endl;
+    cout << "| ID  |   Project Name   |       Project Duration       |   Project Value  |" << endl;
+    cout << "+-----+------------------+------------------------------+------------------+" << endl;
 }
 
 

@@ -39,7 +39,7 @@ void insertLastProject(ListProject &Lp, addressP P);
 
 //function delete
 void deleteFirstProject(ListProject &Lp, addressP P);
-void deletelastProject(ListProject &Lp, addressP P);
+void deletelastProject(ListProject &Lp);
 void deleteAfterProject(ListProject &Lp, addressP prec, addressP P);
 void deleteProject(ListProject &Lp, addressP P);
 
@@ -59,5 +59,5 @@ void showProjectOnly(ListProject Lp, string projName);
 void projectMenu();
 void projectMenuHeader();
 void subMenuUpdateProyek();
-
+void tableHeaderProject();
 #endif // PROYEK_H_INCLUDED

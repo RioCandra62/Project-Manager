@@ -57,4 +57,5 @@ void showOnlyManager(ListManager L, addressM P);
 void mainMenu();
 void headerMenu();
 void subMenu();
+void tableHeader();
 #endif // MANAGER_H_INCLUDED
